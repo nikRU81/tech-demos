@@ -18,5 +18,8 @@ One sticky GitHub monorepo for small public tech demos. Never create a new repos
 6. Open **one** PR. Attach **both** at least one screenshot **and** at least one video of the running app.
 7. Never create a new GitHub repository.
 
+## Deploy
+Preview/production deploys go to **Vercel**, linked to this repo. Prefer a root directory of `apps/<kebab-slug>/` per app (separate Vercel project or monorepo rootDirectory), not Cloudflare Pages.
+
 ## Validation
 Screenshot + video of the running app in the PR are required, not optional.

@@ -6,6 +6,7 @@ Sticky monorepo for weekday X-bookmark tech demos.
 - Plan with `skills/project-planning/`
 - Track proposed bookmarks in `tracking/seen-bookmarks.json`
 - Cloud agents only touch `apps/<slug>/`, open one PR, and attach screenshot + video validation
+- Deploys: **Vercel** (root directory `apps/<slug>/` per app)
 
 ```bash
 cd apps/<slug>
