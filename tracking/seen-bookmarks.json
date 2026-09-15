@@ -1,5 +1,13 @@
 {
-  "proposed": [],
+  "proposed": [
+    {
+      "id": "2099551291601248485",
+      "title": "Claude Mods",
+      "url": "https://x.com/bcherny/status/2099551291601248485",
+      "date": "2026-09-15",
+      "slug": "claude-mods-playground"
+    }
+  ],
   "built": ["2094915837476082048"],
   "skipped": []
 }
