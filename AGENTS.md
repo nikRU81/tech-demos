@@ -23,3 +23,5 @@ Preview/production deploys go to **Vercel**, linked to this repo. Prefer a root 
 
 ## Validation
 Screenshot + video of the running app in the PR are required, not optional.
+
+poteto-mode — режим по умолчанию для нетривиальных задач (см. `.cursor/skills/poteto-mode/SKILL.md`).
