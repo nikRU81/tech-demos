@@ -6,15 +6,8 @@
       "url": "https://x.com/bcherny/status/2099551291601248485",
       "date": "2026-09-15",
       "slug": "claude-mods-playground"
-    },
-    {
-      "id": "2108948624004526516",
-      "title": "Anatomy",
-      "url": "https://x.com/wheresryan22/status/2108948624004526516",
-      "date": "2026-10-19",
-      "slug": "anatomy-risk-map"
     }
   ],
-  "built": ["2094915837476082048"],
+  "built": ["2094915837476082048", "2108948624004526516"],
   "skipped": []
 }
