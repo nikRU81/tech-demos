@@ -17,6 +17,6 @@ if ! command -v gemini-api-cli >/dev/null 2>&1; then
 fi
 
 gemini-api-cli \
-  --model gemini-2.0-flash \
+  --model "${GEMINI_MODEL:-gemini-4-hydrogen}" \
   --prompt "Извлеки строки акта КС-2 в JSON. actId=${ACT_ID}. Только JSON." \
   --file "${ACT_IMAGE}"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
@@ -36,50 +36,58 @@ function formatRub(value: number): string {
 
 export function ActCheckDashboard({ geminiConfigured }: Props) {
   const [selectedActId, setSelectedActId] = useState(BUNDLED_ACTS[1]!.id);
-  const [extraction, setExtraction] = useState<ExtractedAct | null>(null);
-  const [demoMode, setDemoMode] = useState(!geminiConfigured);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [result, setResult] = useState<{
+    actId: string;
+    extraction: ExtractedAct | null;
+    demoMode: boolean;
+    error: string | null;
+  } | null>(null);
 
   const selectedAct = BUNDLED_ACTS.find((act) => act.id === selectedActId)!;
-
-  const loadAct = useCallback(async (actId: string) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await fetch("/api/extract", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ actId }),
-      });
-      if (!response.ok) {
-        throw new Error("Не удалось загрузить извлечение");
-      }
-      const payload = (await response.json()) as {
-        extraction: ExtractedAct;
-        demoMode: boolean;
-        warning?: string;
-      };
-      setExtraction(payload.extraction);
-      setDemoMode(payload.demoMode);
-      if (payload.warning) {
-        setError(payload.warning);
-      }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Ошибка сети");
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  const onSelectAct = (actId: string) => {
-    setSelectedActId(actId);
-    void loadAct(actId);
-  };
+  const loading = result?.actId !== selectedActId;
+  const extraction = loading ? null : (result?.extraction ?? null);
+  const demoMode = result?.demoMode ?? !geminiConfigured;
+  const error = loading ? null : (result?.error ?? null);
 
   useEffect(() => {
-    void loadAct(selectedActId);
-  }, [loadAct, selectedActId]);
+    let cancelled = false;
+    fetch("/api/extract", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ actId: selectedActId }),
+    })
+      .then(async (response) => {
+        if (!response.ok) {
+          throw new Error("Не удалось загрузить извлечение");
+        }
+        return (await response.json()) as {
+          extraction: ExtractedAct;
+          demoMode: boolean;
+          warning?: string;
+        };
+      })
+      .then((payload) => {
+        if (cancelled) return;
+        setResult({
+          actId: selectedActId,
+          extraction: payload.extraction,
+          demoMode: payload.demoMode,
+          error: payload.warning ?? null,
+        });
+      })
+      .catch((err: unknown) => {
+        if (cancelled) return;
+        setResult({
+          actId: selectedActId,
+          extraction: null,
+          demoMode: !geminiConfigured,
+          error: err instanceof Error ? err.message : "Ошибка сети",
+        });
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedActId, geminiConfigured]);
 
   const reconciliation = useMemo(() => {
     if (!extraction) return null;
@@ -113,7 +121,7 @@ export function ActCheckDashboard({ geminiConfigured }: Props) {
           id="act-select"
           className="h-9 rounded-md border border-input bg-background px-3 text-sm"
           value={selectedActId}
-          onChange={(event) => onSelectAct(event.target.value)}
+          onChange={(event) => setSelectedActId(event.target.value)}
           disabled={loading}
         >
           {BUNDLED_ACTS.map((act) => (

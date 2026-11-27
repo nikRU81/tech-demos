@@ -14,7 +14,6 @@ const VOLUME_EPSILON = 0.001;
 function findContractLine(
   actLine: ActLine,
   contract: Contract,
-  cumulativeByContractId: Map<string, number>,
 ): ContractLine | null {
   const target = normalizeWorkType(actLine.workType);
   const exact = contract.lines.find(
@@ -121,11 +120,7 @@ export function reconcileAct(
   const reconciled: ReconciledLine[] = [];
 
   for (const actLine of actLines) {
-    const contractLine = findContractLine(
-      actLine,
-      contract,
-      cumulativeByContractId,
-    );
+    const contractLine = findContractLine(actLine, contract);
     const prior = contractLine
       ? (cumulativeByContractId.get(contractLine.id) ?? 0)
       : 0;
