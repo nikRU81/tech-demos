@@ -5,8 +5,17 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 
 export async function POST(request: Request) {
-  const body = (await request.json()) as { actId?: string };
-  const actId = body.actId?.trim();
+  let body: unknown;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Тело запроса должно быть JSON" }, { status: 400 });
+  }
+  const rawActId =
+    typeof body === "object" && body !== null
+      ? (body as { actId?: unknown }).actId
+      : undefined;
+  const actId = typeof rawActId === "string" ? rawActId.trim() : "";
 
   if (!actId) {
     return NextResponse.json({ error: "actId обязателен" }, { status: 400 });

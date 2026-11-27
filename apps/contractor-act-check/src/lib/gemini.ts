@@ -1,6 +1,14 @@
 import "server-only";
 import { GoogleGenAI } from "@google/genai";
 import type { ExtractedAct } from "@/features/reconcile/types";
+import { parseExtractedAct } from "@/features/reconcile/parse-extraction";
+
+// Gemini 4 Hydrogen: multimodal (text, image, PDF), see https://ai.google.dev/gemini-api/docs/models
+const DEFAULT_GEMINI_MODEL = "gemini-4-hydrogen";
+
+function geminiModel(): string {
+  return process.env.GEMINI_MODEL?.trim() || DEFAULT_GEMINI_MODEL;
+}
 
 export function isGeminiConfigured(): boolean {
   return Boolean(process.env.GEMINI_API_KEY?.trim());
@@ -34,7 +42,7 @@ export async function extractActFromImage(
 
   const client = new GoogleGenAI({ apiKey });
   const response = await client.models.generateContent({
-    model: "gemini-2.0-flash",
+    model: geminiModel(),
     contents: [
       {
         role: "user",
@@ -61,5 +69,11 @@ export async function extractActFromImage(
     throw new Error("Пустой ответ Gemini");
   }
 
-  return JSON.parse(text) as ExtractedAct;
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(text);
+  } catch {
+    throw new Error("Gemini вернул не JSON");
+  }
+  return parseExtractedAct(parsed);
 }
