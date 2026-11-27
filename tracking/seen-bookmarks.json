@@ -8,6 +8,16 @@
       "slug": "claude-mods-playground"
     }
   ],
-  "built": ["2094915837476082048", "2108948624004526516"],
+  "built": [
+    "2094915837476082048",
+    "2108948624004526516",
+    {
+      "id": "2124630542738202805",
+      "title": "gemini-api-cli (google-gemini)",
+      "url": "https://x.com/don_tech1/status/2124630542738202805",
+      "date": "2026-11-27",
+      "slug": "contractor-act-check"
+    }
+  ],
   "skipped": []
 }

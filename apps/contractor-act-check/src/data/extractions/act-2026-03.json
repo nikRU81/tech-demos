@@ -1,0 +1,62 @@
+{
+  "actId": "act-2026-03",
+  "actNumber": "КС-2 № 11/26",
+  "periodLabel": "Март 2026",
+  "documentDate": "2026-04-08",
+  "lines": [
+    {
+      "lineNo": 1,
+      "workType": "Очистка наружной поверхности трубы",
+      "unit": "м²",
+      "periodVolume": 480,
+      "cumulativeVolume": 1000,
+      "unitPriceRub": 420,
+      "amountRub": 201600
+    },
+    {
+      "lineNo": 2,
+      "workType": "Нанесение антикоррозийного грунта",
+      "unit": "м²",
+      "periodVolume": 540,
+      "cumulativeVolume": 1150,
+      "unitPriceRub": 355,
+      "amountRub": 191700
+    },
+    {
+      "lineNo": 3,
+      "workType": "Нанесение финишного покрытия",
+      "unit": "м²",
+      "periodVolume": 520,
+      "cumulativeVolume": 520,
+      "unitPriceRub": 480,
+      "amountRub": 249600
+    },
+    {
+      "lineNo": 4,
+      "workType": "Замена прокладки фланцевого соединения",
+      "unit": "шт",
+      "periodVolume": 12,
+      "cumulativeVolume": 12,
+      "unitPriceRub": 5400,
+      "amountRub": 64800
+    },
+    {
+      "lineNo": 5,
+      "workType": "Аварийная разборка строительных лесов",
+      "unit": "м²",
+      "periodVolume": 95,
+      "cumulativeVolume": 95,
+      "unitPriceRub": 1200,
+      "amountRub": 114000
+    },
+    {
+      "lineNo": 6,
+      "workType": "Погрузо-разгрузочные работы",
+      "unit": "т",
+      "periodVolume": 18,
+      "cumulativeVolume": 18,
+      "unitPriceRub": 1450,
+      "amountRub": 26100
+    }
+  ]
+}

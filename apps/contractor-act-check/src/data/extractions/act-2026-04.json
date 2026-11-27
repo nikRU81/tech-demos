@@ -1,0 +1,62 @@
+{
+  "actId": "act-2026-04",
+  "actNumber": "КС-2 № 15/26",
+  "periodLabel": "Апрель 2026",
+  "documentDate": "2026-05-06",
+  "lines": [
+    {
+      "lineNo": 1,
+      "workType": "Разборка изоляции трубопровода",
+      "unit": "м",
+      "periodVolume": 60,
+      "cumulativeVolume": 450,
+      "unitPriceRub": 890,
+      "amountRub": 53400
+    },
+    {
+      "lineNo": 2,
+      "workType": "Ремонт электродного термоизоляционного слоя",
+      "unit": "м²",
+      "periodVolume": 280,
+      "cumulativeVolume": 280,
+      "unitPriceRub": 1850,
+      "amountRub": 518000
+    },
+    {
+      "lineNo": 3,
+      "workType": "Установка опорных конструкций",
+      "unit": "шт",
+      "periodVolume": 6,
+      "cumulativeVolume": 6,
+      "unitPriceRub": 12800,
+      "amountRub": 76800
+    },
+    {
+      "lineNo": 4,
+      "workType": "Испытание на герметичность",
+      "unit": "участок",
+      "periodVolume": 2,
+      "cumulativeVolume": 2,
+      "unitPriceRub": 42000,
+      "amountRub": 84000
+    },
+    {
+      "lineNo": 5,
+      "workType": "Восстановление дорожного покрытия",
+      "unit": "м²",
+      "periodVolume": 140,
+      "cumulativeVolume": 140,
+      "unitPriceRub": 2900,
+      "amountRub": 406000
+    },
+    {
+      "lineNo": 6,
+      "workType": "Инструктаж персонала заказчика",
+      "unit": "чел",
+      "periodVolume": 8,
+      "cumulativeVolume": 8,
+      "unitPriceRub": 2400,
+      "amountRub": 19200
+    }
+  ]
+}
